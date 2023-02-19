@@ -18,7 +18,9 @@ const MainRouter = ({data}) => {
         <Route path="/signup" component={Signup}/>
         <Route path="/signin" component={Signin}/>
         <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
-        <Route path="/user/:userId" component={Profile}/>  
+       <Route path="/user/:userId" component={Profile} />  
+
+      <PrivateRoute path="/media/new" component={NewMedia}/>
       </Switch>
     </div>)
 }
