@@ -11,16 +11,15 @@ import {Link, withRouter} from 'react-router-dom'
 
 const isActive = (history, path) => {
   if (history.location.pathname == path)
-    return {color: '#f99085'}
+    return {color: '#ffffff'}
   else
-    return {color: '#efdcd5'}
+    return {color: '#D3D3D3'}
 }
+
 const Menu = withRouter(({history}) => (
-  <AppBar position="static">
+  <div>
+    <AppBar position="static" style = {{marginTop: 20, marginLeft: 20, borderRadius: 15, width: 97.7+ '%', alignSelf: 'center', backgroundColor: '#452262'}}>
     <Toolbar>
-      <Typography type="title" color="inherit">
-        Streaming platform
-      </Typography>
       <div>
         <Link to="/">
           <IconButton aria-label="Home" style={isActive(history, "/")}>
@@ -28,7 +27,7 @@ const Menu = withRouter(({history}) => (
           </IconButton>
         </Link>
       </div>
-      <div style={{'position':'absolute', 'right': '10px'}}><span style={{'float': 'right'}}>
+      <div style={{'position':'absolute', 'right': 25}}><span style={{'float': 'right'}}>
       {
         !auth.isAuthenticated() && (<span>
           <Link to="/signup">
@@ -51,14 +50,15 @@ const Menu = withRouter(({history}) => (
           <Link to={"/user/" + auth.isAuthenticated().user._id}>
             <Button style={isActive(history, "/user/" + auth.isAuthenticated().user._id)}>My Profile</Button>
           </Link>
-          <Button color="inherit" onClick={() => {
-              auth.signout(() => history.push('/'))
+          <Button style = {{color: '#D3D3D3', '&:hover': {color: '#ffffff'}}} onClick={() => {
+              auth.clearJWT(() => history.push('/'))
             }}>Sign out</Button>
         </span>)
       }
       </span></div>
     </Toolbar>
   </AppBar>
+  </div>
 ))
 
 export default Menu

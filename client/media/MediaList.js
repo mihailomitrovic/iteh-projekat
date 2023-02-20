@@ -15,7 +15,8 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
     background: theme.palette.background.paper,
     textAlign: 'left',
-    padding: '8px 16px'
+    padding: '8px 16px',
+    borderRadius: 5
   },
   gridList: {
     width: '100%',
@@ -29,23 +30,31 @@ const useStyles = makeStyles(theme => ({
   },
   tile: {
     textAlign: 'center',
-    maxHeight: '100%'
+    maxHeight: '100%',
+    maxWidth: '30%',
+    borderRadius: 5,
+    margin: 3,
+    padding: 0,
   },
   tileBar: {
-    backgroundColor: 'rgba(0, 0, 0, 0.72)',
+    backgroundColor: '#452262',
     textAlign: 'left',
-    height: '55px'
+    height: '80px',
+    borderRadius: 5,
   },
   tileTitle: {
     fontSize:'1.1em',
     marginBottom:'5px',
-    color:'rgb(193, 173, 144)',
+    color:'#ffffff',
     display:"block"
   },
   tileGenre: {
-    float: 'right',
-    color:'rgb(193, 182, 164)',
-    marginRight: '8px'
+    float: 'left',
+    color:'#ffffff',
+    marginRight: '5px'
+  },
+  vid: {
+    borderRadius: 5,
   }
 }))
 
@@ -56,15 +65,15 @@ export default function MediaList(props) {
       <GridList className={classes.gridList} cols={3}>
         {props.media.map((tile, i) => (
           <GridListTile key={i} className={classes.tile}>
-            <Link to={"/media/"+tile._id}>
-              <ReactPlayer url={'/api/media/video/'+tile._id} width='100%' height='inherit' style={{maxHeight: '100%'}}/>
+            <Link to={"/media/"+tile._id} className = {classes.vid}>
+              <ReactPlayer url={'/api/media/video/'+tile._id} width='100%' height='inherit' style={{maxHeight: '100%'}} className = {classes.vid}/>
             </Link>
             <GridListTileBar className={classes.tileBar}
               title={<Link to={"/media/"+tile._id} className={classes.tileTitle}> {tile.title} </Link>}
               subtitle={<span>
-                          <span>{tile.views} views</span>
+                          <span> | {tile.views} views</span>
                           <span className={classes.tileGenre}>
-                            <em>{tile.genre}</em>
+                            <em>{tile.genre} </em>
                           </span>
                         </span>}
             />
@@ -77,4 +86,3 @@ export default function MediaList(props) {
 MediaList.propTypes = {
   media: PropTypes.array.isRequired
 }
-

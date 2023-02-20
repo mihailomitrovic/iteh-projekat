@@ -7,16 +7,21 @@ const theme = createMuiTheme({
     },
     palette: {
       primary: {
-        light: '#f05545',
-        main: '#000000',
-        dark: '#7f0000',
+        light: '#ffffff',
+        main: '#ffffff',
+        dark: '#fffffff',
         contrastText: '#fff',
       },
       secondary: {
-        light: '#fbfffc',
-        main: '#c8e6c9',
-        dark: '#97b498',
-        contrastText: '#37474f',
+        light: '#000000',
+        main: '#000000',
+        dark: '#000000',
+        contrastText: '#0000000',
+      },
+      info: {
+        light: '#ffffff',
+        main: '#ffffff',
+        dark: '#fffffff'
       },
         openTitle: red['500'],
         protectedTitle: brown['300'],
@@ -24,4 +29,4 @@ const theme = createMuiTheme({
       },
     })
 
-  export default theme
+  export default theme

@@ -18,12 +18,14 @@ const useStyles = makeStyles(theme => ({
     margin: 'auto',
     textAlign: 'center',
     marginTop: theme.spacing(5),
-    paddingBottom: theme.spacing(2)
+    paddingBottom: theme.spacing(2),
+    borderRadius: 30
   },
   title: {
     margin: theme.spacing(2),
     color: theme.palette.protectedTitle,
-    fontSize: '1em'
+    color: '#452262',
+    fontWeight: 800
   },
   error: {
     verticalAlign: 'middle'
@@ -35,7 +37,21 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: 'auto',
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(2),
+    backgroundColor: '#452262',
+    color: '#ffffff',
+    '&:hover': {
+      backgroundColor: '#734F92'
+    }
+  },
+  media: {
+    margin: 'auto',
+    marginBottom: theme.spacing(2),
+    backgroundColor: '#452262',
+    color: '#ffffff',
+    '&:hover': {
+      backgroundColor: '#734F92'
+    }
   },
   input: {
     display: 'none'
@@ -88,31 +104,32 @@ export default function NewMedia(){
       return (<Redirect to={'/media/' + values.mediaId}/>)
     }
     return (
-      <Card className={classes.card}>
+      <Card className={classes.card} style = {{border: '3px solid #452262'}}>
         <CardContent>
-          <Typography type="headline" component="h1" className={classes.title}>
+          <Typography type="title" variant="h6" className={classes.title}>
             New Video
           </Typography>
           <input accept="video/*" onChange={handleChange('video')} className={classes.input} id="icon-button-file" type="file" />
           <label htmlFor="icon-button-file">
-            <Button color="secondary" variant="contained" component="span">
-              Upload
+            <Button className={classes.media} variant="contained" component="span">
+              Upload 
               <FileUpload/>
             </Button>
           </label> <span className={classes.filename}>{values.video ? values.video.name : ''}</span><br/>
           <TextField id="title" label="Title" className={classes.textField} value={values.title} onChange={handleChange('title')} margin="normal"/><br/>
+          <TextField id="genre" label="Genre" className={classes.textField} value={values.genre} onChange={handleChange('genre')} margin="normal"/><br/>
+          <br/>
           <TextField
             id="multiline-flexible"
             label="Description"
             multiline
-            rows="2"
+            rows="5"
             value={values.description}
             onChange={handleChange('description')}
             className={classes.textField}
             margin="normal"
           /><br/>
-          <TextField id="genre" label="Genre" className={classes.textField} value={values.genre} onChange={handleChange('genre')} margin="normal"/><br/>
-          <br/> {
+           {
                   values.error && (<Typography component="p" color="error">
                       <Icon color="error" className={classes.error}>error</Icon>
                       {values.error}
@@ -125,6 +142,3 @@ export default function NewMedia(){
       </Card>
     )
   }
-
-
-

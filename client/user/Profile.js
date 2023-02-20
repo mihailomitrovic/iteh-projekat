@@ -21,18 +21,36 @@ import MediaList from '../media/MediaList'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
-    maxWidth: 600,
+    maxWidth: 800,
     margin: 'auto',
     padding: theme.spacing(3),
-    marginTop: theme.spacing(5)
+    marginTop: theme.spacing(5),
+    borderRadius: 15,
+    paddingTop: 4
   }),
-  title: {
-    marginTop: theme.spacing(3),
-    color: theme.palette.protectedTitle
-  },
   avatar: {
-    color: theme.palette.primary.contrastText,
-    backgroundColor: theme.palette.primary.light
+    color: '#ffffff',
+    backgroundColor: '#734F92',
+    height: 40,
+    width: 40,
+  },
+  avatardiv: {
+    marginTop: 30
+  },
+  name: {
+    fontWeight: 'bold',
+    marginLeft: 1,
+    fontSize: 20,
+    fontFamily: 'Arial, Helvetica, sans-serif'
+  },
+  email: {
+    marginLeft: 75,
+    marginBottom: 20,
+    fontSize: 15,
+    fontStyle: 'italic',
+    color: '#452262',
+    fontFamily: 'Arial, Helvetica, sans-serif',
+    marginTop: -15
   }
 }))
 
@@ -87,22 +105,20 @@ export default function Profile({ match }) {
       return <Redirect to='/signin'/>
     }
     return (
-      <Paper className={classes.root} elevation={4}>
-        <Typography variant="h6" className={classes.title}>
-          Profile
-        </Typography>
-        <List dense>
+      <Paper className={classes.root} elevation={4} style = {{border: '3px solid #452262'}}>
+        <List>
           <ListItem>
-            <ListItemAvatar>
+            <ListItemAvatar className = {classes.avatardiv}>
               <Avatar className={classes.avatar}>
                 {user.name && user.name[0]}
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={user.name} secondary={user.email}/> {
+            <ListItemText disableTypography primary={user.name} className = {classes.name}/>
+            {
              auth.isAuthenticated().user && auth.isAuthenticated().user._id == user._id &&
               (<ListItemSecondaryAction>
                 <Link to={"/user/edit/" + user._id}>
-                  <IconButton aria-label="Edit" color="primary">
+                  <IconButton aria-label="Edit" color="secondary" style = {{marginTop: 30}}>
                     <Edit/>
                   </IconButton>
                 </Link>
@@ -110,11 +126,8 @@ export default function Profile({ match }) {
               </ListItemSecondaryAction>)
             }
           </ListItem>
-          <Divider/>
-          <ListItem>
-            <ListItemText primary={"Joined: " + (
-              new Date(user.created)).toDateString()}/>
-          </ListItem>
+          <ListItemText disableTypography primary={user.email} className = {classes.email}/>
+          <Divider style={{marginBottom: 20}}/>
           <MediaList media={media}/>
         </List>
       </Paper>

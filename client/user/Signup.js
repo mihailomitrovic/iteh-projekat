@@ -21,14 +21,20 @@ const useStyles = makeStyles(theme => ({
     margin: 'auto',
     textAlign: 'center',
     marginTop: theme.spacing(5),
-    paddingBottom: theme.spacing(2)
+    paddingBottom: theme.spacing(2),
+    borderRadius: 30,
   },
   error: {
     verticalAlign: 'middle'
   },
   title: {
     marginTop: theme.spacing(2),
-    color: theme.palette.openTitle
+    color: '#452262',
+    fontWeight: 800
+  },
+  newacc: {
+    color: '#452262',
+    fontWeight: 800
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -37,7 +43,22 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: 'auto',
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(2),
+    backgroundColor: '#452262',
+    color: '#ffffff',
+    '&:hover': {
+      backgroundColor: '#734F92'
+    }
+  },
+  button: {
+    margin: 'auto',
+    backgroundColor: '#452262',
+    marginRight: 98,
+    marginBottom: 10,
+    color: '#ffffff',
+    '&:hover': {
+      backgroundColor: '#734F92'
+    }
   }
 }))
 
@@ -71,7 +92,7 @@ export default function Signup() {
   }
 
     return (<div>
-      <Card className={classes.card}>
+      <Card className={classes.card} style = {{border: '3px solid #452262'}}>
         <CardContent>
           <Typography variant="h6" className={classes.title}>
             Sign Up
@@ -81,24 +102,24 @@ export default function Signup() {
           <TextField id="password" type="password" label="Password" className={classes.textField} value={values.password} onChange={handleChange('password')} margin="normal"/>
           <br/> {
             values.error && (<Typography component="p" color="error">
-              <Icon color="error" className={classes.error}>error</Icon>
+              <Icon color="error" className={classes.error}> error</Icon>
               {values.error}</Typography>)
           }
         </CardContent>
         <CardActions>
-          <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
+          <Button variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
         </CardActions>
       </Card>
       <Dialog open={values.open} disableBackdropClick={true}>
-        <DialogTitle>New Account</DialogTitle>
+        <DialogTitle className= {classes.newacc} style = {{textAlign: 'center'}}>New Account</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            New account successfully created.
+            New account successfully created
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Link to="/signin">
-            <Button color="primary" autoFocus="autoFocus" variant="contained">
+            <Button color="primary" autoFocus="autoFocus" variant="contained" className={classes.button}>
               Sign In
             </Button>
           </Link>

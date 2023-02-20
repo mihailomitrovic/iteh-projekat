@@ -15,17 +15,18 @@ const useStyles = makeStyles(theme => ({
   },
   primaryDashed: {
     background: 'none',
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: '#452262',
   },
   primaryColor: {
-    backgroundColor: '#6969694f'
+    backgroundColor: '#452262',
   },
   dashed: {
     animation: 'none'
   },
   controls:{
     position: 'relative',
-    backgroundColor: '#ababab52'
+    backgroundColor: '#452262',
+    borderRadius: 5
   },
   rangeRoot: {
     position: 'absolute',
@@ -39,6 +40,9 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     textAlign: 'center',
     color: theme.palette.primary.light
+  },
+  player: {
+    borderRadius: 5
   }
 }))
 
@@ -140,7 +144,7 @@ export default function MediaPlayer(props) {
           ref={ref}
             width={fullscreen ? '100%':'inherit'}
             height={fullscreen ? '100%':'inherit'}
-            style={fullscreen ? {position:'relative'} : {maxHeight: '500px'}}
+            style={fullscreen ? {position:'relative'} : {maxHeight: '500px', border: '3px solid #452262'}}
             config={{ attributes: { style: { height: '100%', width: '100%'} } }}
             url={props.srcUrl}
             playing={playing}
@@ -151,13 +155,14 @@ export default function MediaPlayer(props) {
             onEnded={onEnded}
             onError={showVideoError}
             onProgress={onProgress}
-            onDuration={onDuration}/>
+            onDuration={onDuration}
+            className = {classes.player}/>
           <br/>
       </div>
       <div className={classes.controls}>
-        <LinearProgress color="primary" variant="buffer" value={values.played*100} valueBuffer={values.loaded*100} style={{width: '100%'}} classes={{
-              colorPrimary: classes.primaryColor,
-              dashedColorPrimary : classes.primaryDashed,
+        <LinearProgress variant="buffer" value={values.played*100} valueBuffer={values.loaded*100} style={{width: '100%'}} classes={{
+              colorPrimary: 'primary',
+              dashedColorPrimary : 'classes.primaryDashed',
               dashed: classes.dashed
         }}/>
         <input type="range" min={0} max={1}
@@ -178,14 +183,14 @@ export default function MediaPlayer(props) {
         <IconButton color="primary" onClick={toggleMuted}>
           <Icon>{volume > 0 && !muted && 'volume_up' || muted && 'volume_off' || volume==0 && 'volume_mute'}</Icon>
         </IconButton>
-        <input type="range" min={0} max={1} step='any' value={muted? 0 : volume} onChange={changeVolume} style={{verticalAlign: 'middle'}}/>
-        <IconButton color={loop? 'primary' : 'default'} onClick={onLoop}>
+        <input type="range" min={0} max={1} step='any' value={muted? 0 : volume} onChange={changeVolume} style={{verticalAlign: 'middle', color: 'red'}}/>
+        <IconButton color={loop? 'primary' : 'info'} onClick={onLoop}>
           <Icon>loop</Icon>
         </IconButton>
         <IconButton color="primary" onClick={onClickFullscreen}>
           <Icon>fullscreen</Icon>
         </IconButton>
-        <span style={{float: 'right', padding: '10px', color: '#b83423'}}>
+        <span style={{float: 'right', padding: '10px', color: '#ffffff', marginTop: 7, marginRight: 5, fontFamily: 'Arial, Helvetica, sans-serif'}}>
           <time dateTime={`P${Math.round(duration * values.played)}S`}>
             {format(duration * values.played)}
           </time> / <time dateTime={`P${Math.round(duration)}S`}>

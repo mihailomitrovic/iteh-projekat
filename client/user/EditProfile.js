@@ -17,11 +17,13 @@ const useStyles = makeStyles(theme => ({
     margin: 'auto',
     textAlign: 'center',
     marginTop: theme.spacing(5),
-    paddingBottom: theme.spacing(2)
+    paddingBottom: theme.spacing(2),
+    borderRadius: 30
   },
   title: {
     margin: theme.spacing(2),
-    color: theme.palette.protectedTitle
+    color: '#452262',
+    fontWeight: 800
   },
   error: {
     verticalAlign: 'middle'
@@ -33,7 +35,12 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: 'auto',
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(2),
+    backgroundColor: '#452262',
+    color: '#ffffff',
+    '&:hover': {
+      backgroundColor: '#734F92'
+    }
   }
 }))
 
@@ -94,7 +101,7 @@ export default function EditProfile({ match }) {
       return (<Redirect to={'/user/' + values.userId}/>)
     }
     return (
-      <Card className={classes.card}>
+      <Card className={classes.card} style = {{border: '3px solid #452262'}}>
         <CardContent>
           <Typography variant="h6" className={classes.title}>
             Edit Profile

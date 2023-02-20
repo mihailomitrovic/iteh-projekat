@@ -12,16 +12,20 @@ import ReactPlayer from 'react-player'
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
     paddingBottom: 24,
-    backgroundColor: '#80808024'
+    backgroundColor: '#ffffff',
+    borderRadius: 15
   }),
   title: {
     margin: `${theme.spacing(3)}px ${theme.spacing(1)}px ${theme.spacing(2)}px`,
-    color: theme.palette.openTitle,
-    fontSize: '1em'
+    color: '#452262',
+    fontWeight: 800,
+    marginTop: 0,
+    marginLeft: 0
   },
   card: {
     width: '100%',
-    display: 'inline-flex'
+    display: 'inline-flex',
+    marginBottom: 10
   },
   details: {
     display: 'inline-block',
@@ -43,7 +47,8 @@ const useStyles = makeStyles(theme => ({
     textOverflow: 'ellipsis',
     width: '130px',
     fontSize: '1em',
-    marginBottom: '5px'
+    marginBottom: '5px',
+    color: '#ffffff'
   },
   subheading: {
     color: 'rgba(88, 114, 128, 0.67)'
@@ -52,24 +57,24 @@ const useStyles = makeStyles(theme => ({
     display: 'inline',
     lineHeight: '3',
     paddingLeft: '8px',
-    color: theme.palette.text.secondary
+    color: theme.palette.text.primary
   }
 }))
 export default function RelatedMedia(props) {
   const classes = useStyles()
     return (
-      <Paper className={classes.root} elevation={4} style={{padding: '16px'}}>
-          <Typography type="title" className={classes.title}>
+      <Paper className={classes.root} elevation={4} style={{padding: '16px', border: '3px solid #452262'}}>
+          <Typography variant="h6" className={classes.title}>
             Up Next
           </Typography>
           {props.media.map((item, i) => {
-              return <span key={i}><Card className={classes.card} >
-                <div style={{marginRight: "5px", backgroundColor: "black"}}>
+              return <span key={i}><Card className={classes.card} style = {{border: '3px solid #452262'}}>
+                <div style={{marginRight: "5px", backgroundColor: "#452262"}}>
               <Link to={"/media/"+item._id}><ReactPlayer url={'/api/media/video/'+item._id} width='160px' height='140px'/></Link>
               </div>
                       <div className={classes.details}>
                         <CardContent className={classes.content}>
-                          <Link to={'/media/'+item._id}><Typography type="title" component="h3" className={classes.mediaTitle} color="primary">{item.title}</Typography></Link>
+                          <Link to={'/media/'+item._id}><Typography type="title" component="h3" className={classes.mediaTitle} style={{color:"#452262", fontWeight: 'bold'}} >{item.title}</Typography></Link>
                           <Typography type="subheading" className={classes.subheading}>
                             {item.genre}
                           </Typography>
@@ -80,7 +85,7 @@ export default function RelatedMedia(props) {
 
                         </CardContent>
                         <div className={classes.controls}>
-                        <Typography type="subheading" component="h3" className={classes.views} color="primary"> {item.views} views</Typography>
+                        <Typography type="subheading" component="h3" className={classes.views} color="secondary"> {item.views} views</Typography>
                         </div>
                       </div>
 

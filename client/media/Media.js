@@ -19,16 +19,18 @@ import MediaPlayer from './MediaPlayer'
 
 const useStyles = makeStyles(theme => ({
   card: {
-    padding:'20px'
+    padding:'20px',
+    borderRadius: 15
   },
   header: {
-    padding:'0px 16px 16px 12px'
+    padding:'0px 16px 16px 3px'
   },
   action: {
-    margin: '24px 20px 0px 0px',
+    margin: '24px 0px 0px 0px',
     display: 'inline-block',
     fontSize: '1.15em',
-    color: theme.palette.secondary.dark
+    color: theme.palette.secondary.dark,
+    fontFamily: 'Arial, Helvetica, sans-serif',
   },
   avatar: {
       color: theme.palette.primary.contrastText,
@@ -43,7 +45,7 @@ export default function Media(props) {
         : null
   const nextUrl = props.nextUrl
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} style = {{ border: '3px solid #452262'}}>
       <CardHeader className={classes.header}
             title={props.media.title}
             action={
@@ -54,13 +56,8 @@ export default function Media(props) {
       <MediaPlayer srcUrl={mediaUrl} nextUrl={nextUrl} handleAutoplay={props.handleAutoplay}/>
       <List dense>
         <ListItem>
-          <ListItemAvatar>
-            <Avatar className={classes.avatar}>
-              {props.media.postedBy.name && props.media.postedBy.name[0]}
-            </Avatar>
-          </ListItemAvatar>
           <ListItemText primary={props.media.postedBy.name}
-                        secondary={"Published on " + (new Date(props.media.created)).toDateString()}/>
+                        secondary={(new Date(props.media.created)).toDateString()}/>
           { auth.isAuthenticated().user
               && auth.isAuthenticated().user._id == props.media.postedBy._id
               && (<ListItemSecondaryAction>
@@ -87,4 +84,3 @@ Media.propTypes = {
   nextUrl: PropTypes.string,
   handleAutoplay: PropTypes.func.isRequired
 }
-
