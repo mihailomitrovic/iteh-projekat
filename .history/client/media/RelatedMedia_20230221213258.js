@@ -23,19 +23,23 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 0
   },
   card: {
-    width: '99%',
+    width: '100%',
     display: 'inline-flex',
-    marginBottom: 10,
+    marginBottom: 10
   },
   details: {
     display: 'inline-block',
-    width: "100%",
-    height: '60'
+    width: "100%"
   },
   content: {
     flex: '1 0 auto',
-    padding: '16px 8px 0px',
-    marginTop: 15
+    padding: '16px 8px 0px'
+  },
+  controls: {
+    marginTop: '8px'
+  },
+  date: {
+    color: 'rgba(0, 0, 0, 0.4)'
   },
   mediaTitle: {
     whiteSpace: 'nowrap',
@@ -52,11 +56,8 @@ const useStyles = makeStyles(theme => ({
   views: {
     display: 'inline',
     lineHeight: '3',
-    marginBottom: '100px',
+    paddingLeft: '8px',
     color: theme.palette.text.primary
-  },
-  vid: {
-    marginLeft: 20,
   }
 }))
 export default function RelatedMedia(props) {
@@ -68,20 +69,28 @@ export default function RelatedMedia(props) {
           </Typography>
           {props.media.map((item, i) => {
               return <span key={i}><Card className={classes.card} style = {{border: '3px solid #452262'}}>
-                <div style={{marginRight: "5px", backgroundColor: "#ffffff"}}>
-              <Link to={"/media/"+item._id}><ReactPlayer url={'/api/media/video/'+item._id} width='160px' height='140px' className = {classes.vid}/></Link>
+                <div style={{marginRight: "5px", backgroundColor: "#452262"}}>
+              <Link to={"/media/"+item._id}><ReactPlayer url={'/api/media/video/'+item._id} width='160px' height='140px'/></Link>
               </div>
                       <div className={classes.details}>
                         <CardContent className={classes.content}>
-                          <Link to={'/media/'+item._id}><Typography variant="h6" className={classes.mediaTitle} style={{color:"#452262", fontWeight: 'bold'}}>{item.title}</Typography></Link>
+                          <Link to={'/media/'+item._id}><Typography type="title" component="h3" className={classes.mediaTitle} style={{color:"#452262", fontWeight: 'bold'}} >{item.title}</Typography></Link>
                           <Typography type="subheading" className={classes.subheading}>
                             {item.genre}
                           </Typography>
-                          <Typography type="subheading" component="h3" className={classes.views} color="secondary"> {item.views} views</Typography>
+
+                          <Typography component="p" className={classes.date}>
+                            {(new Date(item.created)).toDateString()}
+                          </Typography>
+
                         </CardContent>
+                        <div className={classes.controls}>
+                        <Typography type="subheading" component="h3" className={classes.views} color="secondary"> {item.views} views</Typography>
+                        </div>
                       </div>
 
                     </Card>
+                    <Divider/>
                     </span>
             })
           }

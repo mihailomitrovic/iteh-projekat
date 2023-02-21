@@ -32,13 +32,15 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     maxHeight: '100%',
     maxWidth: '30%',
+    borderRadius: 5,
     margin: 3,
     padding: 0,
   },
   tileBar: {
     backgroundColor: '#452262',
     textAlign: 'left',
-    height: '60px',
+    height: '80px',
+    borderRadius: 5,
   },
   tileTitle: {
     fontSize:'1.1em',
@@ -52,7 +54,7 @@ const useStyles = makeStyles(theme => ({
     marginRight: '5px'
   },
   vid: {
-    borderRadius: 5
+    borderRadius: 5,
   }
 }))
 
@@ -64,7 +66,7 @@ export default function MediaList(props) {
         {props.media.map((tile, i) => (
           <GridListTile key={i} className={classes.tile}>
             <Link to={"/media/"+tile._id} className = {classes.vid}>
-              <ReactPlayer url={'/api/media/video/'+tile._id} width='100%' style={{maxHeight: '100%'}}/>
+              <ReactPlayer url={'/api/media/video/'+tile._id} width='100%' height='inherit' style={{maxHeight: '100%'}} className = {classes.vid}/>
             </Link>
             <GridListTileBar className={classes.tileBar}
               title={<Link to={"/media/"+tile._id} className={classes.tileTitle}> {tile.title} </Link>}
@@ -84,4 +86,3 @@ export default function MediaList(props) {
 MediaList.propTypes = {
   media: PropTypes.array.isRequired
 }
-

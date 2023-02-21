@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import Typography from '@material-ui/core/Typography'
-import MediaList from '../media/MediaListB'
+import MediaList from '../media/MediaList'
 import {listPopular} from '../media/api-media.js'
 import { Button, Input, TextareaAutosize } from '@material-ui/core'
 import { Label } from '@material-ui/icons'
@@ -14,9 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     padding:`${theme.spacing(3)}px ${theme.spacing(2.5)}px 0px`,
-    color: '#452262',
-    fontWeight: 800,
-    fontSize: 40
+    color: '#452262'
   },
   media: {
     minHeight: 330
@@ -49,9 +47,10 @@ export default function Home(){
   }, [])
   return (
       <div>
+      <Input className={classes.input} placeholder = {'Enter the name of the video'}></Input>
        <Card className={classes.card} style = {{border: '3px solid #452262'}}>
-        <Typography variant="h6" className={classes.title} style = {{textAlign: 'center'}}>
-          Trending
+        <Typography variant="h6" className={classes.title}>
+          Most viewed
         </Typography>
           <MediaList media={media}/>
       </Card>

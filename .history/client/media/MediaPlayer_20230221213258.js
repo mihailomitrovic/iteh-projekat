@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.primary.light
   },
   player: {
-    borderRadius: 5,
+    borderRadius: 5
   }
 }))
 
@@ -143,7 +143,7 @@ export default function MediaPlayer(props) {
         <ReactPlayer
           ref={ref}
             width={fullscreen ? '100%':'inherit'}
-            height={fullscreen ? '100%':'90%'}
+            height={fullscreen ? '100%':'inherit'}
             style={fullscreen ? {position:'relative'} : {maxHeight: '500px', border: '3px solid #452262'}}
             config={{ attributes: { style: { height: '100%', width: '100%'} } }}
             url={props.srcUrl}
@@ -184,7 +184,7 @@ export default function MediaPlayer(props) {
           <Icon>{volume > 0 && !muted && 'volume_up' || muted && 'volume_off' || volume==0 && 'volume_mute'}</Icon>
         </IconButton>
         <input type="range" min={0} max={1} step='any' value={muted? 0 : volume} onChange={changeVolume} style={{verticalAlign: 'middle', color: 'red'}}/>
-        <IconButton style={{color: loop? '#ffffff' : '#adadad'}} onClick={onLoop}>
+        <IconButton color={loop? 'primary' : 'info'} onClick={onLoop}>
           <Icon>loop</Icon>
         </IconButton>
         <IconButton color="primary" onClick={onClickFullscreen}>

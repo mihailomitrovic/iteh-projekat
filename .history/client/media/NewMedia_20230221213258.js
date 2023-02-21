@@ -11,8 +11,6 @@ import Icon from '@material-ui/core/Icon'
 import {makeStyles} from '@material-ui/core/styles'
 import {create} from './api-media.js'
 import {Redirect} from 'react-router-dom'
-import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions} from '@material-ui/core'
-import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -60,16 +58,6 @@ const useStyles = makeStyles(theme => ({
   },
   filename:{
     marginLeft:'10px'
-  },
-  button: {
-    margin: 'auto',
-    backgroundColor: '#452262',
-    marginRight: 25,
-    marginBottom: 10,
-    color: '#ffffff',
-    '&:hover': {
-      backgroundColor: '#734F92'
-    }
   }
 }))
 
@@ -100,7 +88,7 @@ export default function NewMedia(){
       if (data.error) {
         setValues({...values, error: data.error})
       } else {
-        setValues({...values, error: '', mediaId: data._id, open: true});
+        setValues({...values, error: '', mediaId: data._id, redirect: true})
       }
     })
   }
@@ -124,6 +112,7 @@ export default function NewMedia(){
           <input accept="video/*" onChange={handleChange('video')} className={classes.input} id="icon-button-file" type="file" />
           <label htmlFor="icon-button-file">
             <Button className={classes.media} variant="contained" component="span">
+              Upload 
               <FileUpload/>
             </Button>
           </label> <span className={classes.filename}>{values.video ? values.video.name : ''}</span><br/>
@@ -150,24 +139,6 @@ export default function NewMedia(){
         <CardActions>
           <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
         </CardActions>
-        <Dialog open={values.open} disableBackdropClick={true}>
-        <DialogTitle className= {classes.newacc} style = {{textAlign: 'center'}}>New Video</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            New video successfully uploaded
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Link to={'/'}>
-            <Button color="primary" autoFocus="autoFocus" variant="contained" className={classes.button}>
-              Check other videos out
-            </Button>
-          </Link>
-        </DialogActions>
-        </Dialog>
       </Card>
     )
   }
-
-
-

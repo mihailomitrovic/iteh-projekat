@@ -47,14 +47,14 @@ export default function DeleteMedia(props) {
       <DialogTitle>{"Delete "+props.mediaTitle}</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          Confirm to delete {props.mediaTitle} from your account
+          Confirm to delete {props.mediaTitle} from your account.
         </DialogContentText>
       </DialogContent>
-      <DialogActions style={{marginRight: 85, marginBottom: 4}}>
-        <Button onClick={handleRequestClose} style = {{backgroundColor: '#adadad', color: '#ffffff', width: 100}}>
+      <DialogActions>
+        <Button onClick={handleRequestClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={deleteMedia} variant="contained" autoFocus="autoFocus" style = {{backgroundColor: '#452262', color: '#ffffff', width: 100}}>
+        <Button onClick={deleteMedia} variant="contained" color="secondary" autoFocus="autoFocus">
           Confirm
         </Button>
       </DialogActions>

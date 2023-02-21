@@ -16,32 +16,9 @@ const useStyles = makeStyles(theme => ({
   },
   toggle: {
     float: 'right',
-    marginRight: '20px',
-    marginTop:' 14px'
-  },
-  switch_track: {
-    backgroundColor: "#D3D3D3",
-  },
-  switch_base: {
-    color: "#D3D3D3",
-    "&.Mui-disabled": {
-        color: "#D3D3D3"
-    },
-    "&.Mui-checked": {
-        color: "#452262"
-    },
-    "&.Mui-checked + .MuiSwitch-track": {
-        backgroundColor: "#452262",
-    }
-  },
-  switch_primary: {
-    "&.Mui-checked": {
-        color: "#452262",
-    },
-    "&.Mui-checked + .MuiSwitch-track": {
-        backgroundColor: "#452262",
-    },
-},
+    marginRight: '30px',
+    marginTop:' 10px'
+  }
 }))
 
 export default function PlayMedia(props) {
@@ -129,12 +106,7 @@ export default function PlayMedia(props) {
                           <Switch
                             checked={autoPlay}
                             onChange={handleChange}
-                            classes={{
-                              track: classes.switch_track,
-                              switchBase: classes.switch_base,
-                              colorPrimary: classes.switch_primary,
-                            }}
-                            color={autoPlay ? "primary" : "default"}
+                            color='red'
                           />
                         }
                         label={autoPlay ? 'Autoplay ON':'Autoplay OFF'}

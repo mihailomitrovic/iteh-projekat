@@ -44,7 +44,7 @@ const Menu = withRouter(({history}) => (
         auth.isAuthenticated() && (<span>
           <Link to="/media/new">
             <Button style={isActive(history, "/media/new")}>
-              Upload
+              <AddBoxIcon style={{marginRight: '8px'}}/> Stream
             </Button>
           </Link>
           <Link to={"/user/" + auth.isAuthenticated().user._id}>

@@ -84,4 +84,3 @@ Media.propTypes = {
   nextUrl: PropTypes.string,
   handleAutoplay: PropTypes.func.isRequired
 }
-

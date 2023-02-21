@@ -16,7 +16,9 @@ const useStyles = makeStyles(theme => ({
     background: theme.palette.background.paper,
     textAlign: 'left',
     padding: '8px 16px',
-    borderRadius: 5
+    borderRadius: 5,
+    marginTop: 20,
+    marginLeft: 70
   },
   gridList: {
     width: '100%',
@@ -26,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   title: {
     padding:`${theme.spacing(3)}px ${theme.spacing(2.5)}px ${theme.spacing(2)}px`,
     color: theme.palette.openTitle,
-    width: '100%'
+    width: '100%',
   },
   tile: {
     textAlign: 'center',
@@ -39,6 +41,8 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#452262',
     textAlign: 'left',
     height: '60px',
+    width: '71%',
+    marginLeft: 66
   },
   tileTitle: {
     fontSize:'1.1em',
